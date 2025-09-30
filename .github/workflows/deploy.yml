@@ -4,30 +4,42 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
 
 jobs:
-  deploy:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Upgrade npm
+        run: npm install -g npm@latest
+
       - name: Clear npm cache
         run: npm cache clean --force
 
-      - name: Set npm registry
-        run: npm config set registry https://registry.npmjs.org/
+      - name: Remove package-lock and node_modules
+        run: |
+          rm -f package-lock.json
+          rm -rf node_modules
 
-      - name: Install dependencies
-        run: npm install --force
+      - name: Install dependencies with retry
+        run: |
+          for i in 1 2 3; do
+            npm install && break
+            echo "Retrying npm install ($i)..."
+            sleep 5
+          done
 
-      # Add your build and deploy steps below
+      # Add your build step here, e.g.:
       - name: Build
         run: npm run build
 
+      # Add your deploy step here, e.g.:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./build
+          publish_dir: ./dist
