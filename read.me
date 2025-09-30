@@ -1,0 +1,48 @@
+# Strategic Board Game
+
+This is a web-based, single-player strategy board game built with React and TypeScript. The game is inspired by classic peg solitaire but features a unique, expansive board and a progressive level-up notification system. The objective is to move a single game piece to the final row by strategically jumping over other pieces.
+
+## 💡 Inspiration
+
+The unique board layout and the core puzzle of this game are inspired by a mathematical problem presented in Mark Haddon's beloved novel, *The Curious Incident of the Dog in the Night-Time*. The challenge is to find a path to the final row, reflecting the protagonist's journey of navigating and solving complex problems.
+
+## ✨ Features
+
+-   **Expansive, Pannable Board**: The game is played on a large 20x51 grid, with a focused 15-column viewport that the player can pan left and right to navigate the entire play area.
+-   **Unique Row Labeling**: The board features a non-standard row numbering system (`5, 4, 3, 2, 1, 1, 2...15`), creating a distinct and challenging environment.
+-   **Engaging Jump Mechanic**: Move your pieces by jumping over adjacent ones (orthogonally) into an empty space. The jumped piece is removed from the board.
+-   **Sleek & Interactive UI**: The interface is clean and intuitive, with smooth animations, clear visual cues for selected pieces, and highlighted valid moves.
+-   **Motivational Feedback System**: Receive fun and encouraging messages the first time you reach a new "level" (a higher row), celebrating your progress and keeping you engaged.
+-   **Essential Game Controls**:
+    -   **Undo**: Made a mistake? Easily take back your last move.
+    -   **Reset**: Start a fresh game at any time.
+
+## 룰 How to Play
+
+1.  **Objective**: The goal is to get a single checker to the final, top-most row (labeled '5').
+2.  **Select a Piece**: Click on any black checker to select it. It will be highlighted with a yellow ring.
+3.  **Make a Move**: Potential valid moves for the selected piece will appear as pulsing yellow circles. Click on one of these circles to jump your piece to that spot.
+4.  **The Jump**: To be a valid move, you must jump over a single adjacent piece (up, down, left, or right) into an empty cell immediately on the other side. The piece that was jumped over will be removed from the board.
+5.  **Navigate the Board**: Use the **◀ (Left)** and **▶ (Right)** arrow buttons to pan the view across the wide game board.
+6.  **Keep Advancing**: Continue making strategic jumps to clear a path and move a piece as high up the board as you can!
+
+## 💻 Technical Stack
+
+-   **Framework**: React
+-   **Language**: TypeScript
+-   **Styling**: Tailwind CSS (via CDN for simplicity)
+-   **Module Loading**: ES Modules with Import Maps
+
+## 📂 File Structure
+
+```
+.
+├── index.html            # Main HTML entry point, loads scripts and styles
+├── index.tsx             # Renders the React application into the DOM
+├── App.tsx               # Main application component, sets up the layout
+├── components/
+│   └── GameBoard.tsx     # Core component with all game logic, state, and UI
+├── constants.ts          # Defines shared constants like board dimensions
+├── metadata.json         # Project metadata
+└── README.md             # This file
+```
