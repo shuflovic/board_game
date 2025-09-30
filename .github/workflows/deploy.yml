@@ -14,6 +14,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18' # or your preferred version
+
       - name: Upgrade npm
         run: npm install npm@latest
 
@@ -25,19 +30,17 @@ jobs:
           rm -f package-lock.json
           rm -rf node_modules
 
-      - name: Install dependencies with retry
+      - name: Install dependencies with retry and force
         run: |
           for i in 1 2 3; do
-            npm install && break
+            npm install --legacy-peer-deps --force && break
             echo "Retrying npm install ($i)..."
             sleep 5
           done
 
-      # Add your build step here, e.g.:
       - name: Build
         run: npm run build
 
-      # Add your deploy step here, e.g.:
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
         with:
