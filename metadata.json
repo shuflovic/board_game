@@ -1,0 +1,5 @@
+{
+  "name": "Strategic Game Board",
+  "description": "A web application displaying a custom 15x10 game board with a unique row numbering system, styled like a classic chessboard. This serves as the foundation for a strategic board game.",
+  "requestFramePermissions": []
+}
