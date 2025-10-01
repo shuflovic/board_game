@@ -4,8 +4,10 @@
   "description": "A web-based, single-player strategy board game inspired by a puzzle from 'The Curious Incident of the Dog in the Night-Time'.",
   "private": true,
   "scripts": {
-    "start": "esbuild index.tsx --bundle --outfile=main.js --servedir=. --watch",
-    "build": "esbuild index.tsx --bundle --outfile=main.js --minify"
+    "start": "esbuild index.tsx --bundle --outfile=dist/main.js --servedir=. --watch",
+    "build": "esbuild index.tsx --bundle --outfile=dist/main.js --minify"
+}
+
   },
   "dependencies": {
     "react": "^19.1.1",
