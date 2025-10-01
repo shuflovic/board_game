@@ -6,8 +6,6 @@
   "scripts": {
     "start": "esbuild index.tsx --bundle --outfile=dist/main.js --servedir=. --watch",
     "build": "esbuild index.tsx --bundle --outfile=dist/main.js --minify"
-}
-
   },
   "dependencies": {
     "react": "^19.1.1",
