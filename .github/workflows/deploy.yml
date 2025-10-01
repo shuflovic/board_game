@@ -1,4 +1,4 @@
-name: Deploy static content to Pages
+name: Deploy static content to GitHub Pages
 
 on:
   push:
@@ -14,14 +14,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Copy index.html to dist
-        run: mkdir -p dist && cp index.html dist/
-
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: '20.17.0'
-          
+
       - name: Set npm registry
         run: npm config set registry https://registry.npmjs.org/
 
@@ -36,16 +33,16 @@ jobs:
           rm -f package-lock.json
           rm -rf node_modules
 
-      - name: Install dependencies with retry and force
-        run: |
-          for i in 1 2 3; do
-            npm install --legacy-peer-deps --force && break
-            echo "Retrying npm install ($i)..."
-            sleep 5
-          done
+      - name: Install dependencies
+        run: npm install --legacy-peer-deps --force
 
-      - name: Build
+      - name: Build with esbuild
         run: npm run build
+
+      - name: Copy index.html to dist
+        run: |
+          mkdir -p dist
+          cp index.html dist/
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v3
