@@ -22,19 +22,11 @@ jobs:
       - name: Set npm registry
         run: npm config set registry https://registry.npmjs.org/
 
-      - name: Upgrade npm
-        run: npm install npm@latest
-
       - name: Clear npm cache
         run: npm cache clean --force
 
-      - name: Remove package-lock and node_modules
-        run: |
-          rm -f package-lock.json
-          rm -rf node_modules
-
       - name: Install dependencies
-        run: npm install --legacy-peer-deps --force
+        run: npm ci
 
       - name: Build with esbuild
         run: npm run build
