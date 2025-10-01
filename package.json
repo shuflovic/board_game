@@ -8,10 +8,10 @@
     "build": "esbuild index.tsx --bundle --outfile=dist/main.js --minify"
   },
   "dependencies": {
-    "react": "^19.1.1",
-    "react-dom": "^19.1.1"
+    "react": "19.1.1",
+    "react-dom": "19.1.1"
   },
   "devDependencies": {
-    "esbuild": "^0.23.0"
+    "esbuild": "0.23.0"
   }
 }
